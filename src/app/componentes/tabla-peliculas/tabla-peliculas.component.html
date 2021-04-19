@@ -1,0 +1,13 @@
+<div class="jumbotron">
+	<div class="container">
+		<ul>
+			<li *ngFor="let pelicula of listadoPeliculas">
+				<span>{{pelicula.nombre}}, </span>
+				<span>{{pelicula.tipo}} </span>
+				<img [src]="pelicula.fotoDePelicula"  width="80"> 
+				<button class="btn btn-outline-primary" (click)="seleccioneUnaPelicula(pelicula)">Pelicula</button>
+			</li>
+
+		</ul>
+	</div>	
+</div>
