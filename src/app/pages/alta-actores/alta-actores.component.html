@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="py-5 text-center">
+      <h2>Alta de Actores</h2>
+      
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        
+        <app-tabla-paises (seleccionarPais)="asignarPais($event)"></app-tabla-paises>
+        
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Alta de un Actor</h4>
+        <form [formGroup]="actorForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre"  placeholder="Nombre" formControlName="nombre" required>
+            <div [hidden]="actorForm.get('nombre')?.valid || actorForm.get('nombre')?.pristine" class="alert alert-danger">
+              No ingresaste el nombre
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido"  placeholder="Apellido" formControlName="apellido" required>
+            <div [hidden]="actorForm.get('apellido')?.valid || actorForm.get('apellido')?.pristine" class="alert alert-danger">
+              No ingresaste el apellido
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select class="form-control" id="sexo" formControlName="sexo">
+              <option value="" disabled>Seleccione...</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Masculino">Masculino</option>
+            </select>
+            <div [hidden]="actorForm.get('sexo')?.valid || actorForm.get('sexo')?.pristine" class="alert alert-danger">
+              No ingresaste el sexo
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaDeNacimiento"  placeholder="Fecha de Nacimiento" formControlName="fechaDeNacimiento">
+            <div [hidden]="actorForm.get('fechaDeNacimiento')?.valid || actorForm.get('fechaDeNacimiento')?.pristine" class="alert alert-danger">
+              No ingresaste la fecha de nacimiento
+            </div>
+          </div>
+          <div *ngIf="!seleccionarPais">
+            <p>Seleccione un país</p>
+          </div>
+          
+          <div class="form-group" *ngIf="seleccionarPais">
+            <label for="nacionalidad">Nacionalidad</label>
+            <input type="text" class="form-control" id="nacionalidad"  placeholder="Nacionalidad" [value]="seleccionarPais.name" required>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary" [disabled]="!actorForm.valid || !check">Guardar</button><br>
+        </form>
+      </div>
+    </div>
+  
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2017-2020 Company Name</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+</div>
+
+        
